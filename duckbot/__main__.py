@@ -1,8 +1,11 @@
 import logging
 import logging.handlers
 import os
+import sys
+import traceback
 from discord import Intents, Game
 from discord.ext import commands
+from discord.ext.commands.cog import Cog
 import duckbot.cogs.duck
 import duckbot.cogs.dogs
 import duckbot.cogs.tito
@@ -68,6 +71,21 @@ def logger_setup():
     handler = logging.handlers.RotatingFileHandler(filename=os.path.join(log_directory, "duck.log"), mode="a", maxBytes=256000, backupCount=10)
     handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))
     logger.addHandler(handler)
+
+
+@bot.event
+async def on_command_error(context, exception):
+    if self.extra_events.get("on_command_error", None):
+        return
+    if hasattr(context.command, "on_error"):
+        return
+    cog = context.cog
+    if cog and Cog._get_overridden_method(cog.cog_command_error) is not None:
+        return
+
+    logging.warning(traceback.format_exc())
+    print("Ignoring exception in command {}:".format(context.command), file=sys.stderr)
+    traceback.print_exception(type(exception), exception, exception.__traceback__, file=sys.stderr)
 
 
 if __name__ == "__main__":

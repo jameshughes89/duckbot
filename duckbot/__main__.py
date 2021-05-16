@@ -73,14 +73,14 @@ def logger_setup():
     logger.addHandler(handler)
 
 
-@bot.event
+@commands.Cog.listener()
 async def on_command_error(context, exception):
     if self.extra_events.get("on_command_error", None):
         return
     if hasattr(context.command, "on_error"):
         return
     cog = context.cog
-    if cog and Cog._get_overridden_method(cog.cog_command_error) is not None:
+    if cog and cog._get_overridden_method(cog.cog_command_error) is not None:
         return
 
     logging.warning(traceback.format_exc())

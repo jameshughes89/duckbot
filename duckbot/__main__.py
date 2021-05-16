@@ -5,7 +5,6 @@ import sys
 import traceback
 from discord import Intents, Game
 from discord.ext import commands
-from discord.ext.commands.cog import Cog
 import duckbot.cogs.duck
 import duckbot.cogs.dogs
 import duckbot.cogs.tito
@@ -75,8 +74,6 @@ def logger_setup():
 
 @commands.Cog.listener()
 async def on_command_error(context, exception):
-    if self.extra_events.get("on_command_error", None):
-        return
     if hasattr(context.command, "on_error"):
         return
     cog = context.cog

@@ -94,7 +94,7 @@ if __name__ == "__main__":
                 "aws-cdk.aws-efs==1.142.0",
                 "aws-cdk.aws-iam==1.142.0",
                 "aws-cdk.aws-logs==1.142.0",
-                "aws-cdk.aws-ssm==1.142.0",
+                "aws-cdk.aws-ssm==1.146.0",
                 "boto3==1.20.46",
             ],
         },

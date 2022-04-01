@@ -49,7 +49,7 @@ if __name__ == "__main__":
             "discord.py[voice] @ git+https://github.com/Rapptz/discord.py",
             "beautifulsoup4==4.10.0",
             "requests==2.27.1",
-            "pytz==2021.3",
+            "pytz==2022.1",
             "timezonefinder==5.2.0",
             "holidays==0.12",
             "pyowm==3.2.0",  # openweather

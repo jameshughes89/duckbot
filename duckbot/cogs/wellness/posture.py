@@ -33,7 +33,7 @@ class Posture(commands.Cog):
 
     async def posture_check(self):
         if self.should_send_posture_check():
-            self.on_hour_loop.stop()
+            self.on_hour_loop.cancel()
             channel = get(self.bot.get_all_channels(), guild__name="Friends Chat", name="general", type=ChannelType.text)
             message = random.choice(phrases)
             await channel.send(message)

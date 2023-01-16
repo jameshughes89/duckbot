@@ -1,3 +1,1 @@
-phrases = [
-    "Posture Alert --- Check yourself before you wreck yourself."
-]
+phrases = ["Posture Alert --- Check yourself before you wreck yourself."]

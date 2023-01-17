@@ -1,4 +1,4 @@
-from .wellness import Posture
+from .posture import Posture
 
 
 async def setup(bot):

@@ -1,10 +1,8 @@
-import asyncio
 import random
 
-import discord
-import requests
-from discord import ChannelType, Client, TextChannel
+from discord import ChannelType, Client
 from discord.ext import commands, tasks
+from discord.utils import get
 
 from duckbot.util.datetime import now
 
@@ -16,13 +14,13 @@ class Posture(commands.Cog):
         self.bot = bot
         self.on_hour_loop.start()
 
-    @on_hour_loop.before_loop
-    async def before_loop(self):
-        await self.bot.wait_until_ready()
-
     @tasks.loop(hours=1.0)
     async def on_hour_loop(self):
         await self.on_hour()
+
+    @on_hour_loop.before_loop
+    async def before_loop(self):
+        await self.bot.wait_until_ready()
 
     def cog_unload(self):
         self.on_hour_loop.cancel()
